@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV → NLP 技术传承对比表</title>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root {
+  --bg: #FFFFFF;
+  --bg2: #F8F9FB;
+  --bg3: #EEF1F6;
+  --ink: #1A1A2E;
+  --muted: #6B7280;
+  --border: #E2E5EC;
+  --accent: #2B4C7E;
+  --accent-light: #E8EDF5;
+  --green: #059669;
+  --green-bg: #D1FAE5;
+  --orange: #D97706;
+  --orange-bg: #FEF3C7;
+  --blue: #2563EB;
+  --blue-bg: #DBEAFE;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 15px;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.summary-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  text-align: center;
+}
+.summary-card .num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.summary-card .label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.summary-card.green .num { color: var(--green); }
+.summary-card.orange .num { color: var(--orange); }
+.summary-card.blue .num { color: var(--blue); }
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 1000px;
+}
+thead th {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 16px;
+  text-align: left;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+tbody td {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  vertical-align: top;
+}
+tbody tr:nth-child(even) { background: var(--bg2); }
+tbody tr:hover { background: var(--accent-light); }
+.paper-name {
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.tag.direct { background: var(--green-bg); color: var(--green); }
+.tag.adapt { background: var(--orange-bg); color: var(--orange); }
+.tag.inspire { background: var(--blue-bg); color: var(--blue); }
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 40px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+}
+.detail-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+.detail-card h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+.detail-card p {
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.detail-card .formula {
+  background: var(--bg3);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: "Cambria Math", "Latin Modern Math", serif;
+  font-size: 14px;
+  margin: 8px 0;
+  display: inline-block;
+}
+.legend {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+@media (max-width: 700px) {
+  .summary { grid-template-columns: 1fr; }
+  table { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>12 篇 CV 论文 → NLP（Transformer）技术传承对比表</h1>
+  <p class="subtitle">创建日期：2026-08-17 ｜ 涵盖 AlexNet → ResNeXt 共 12 篇经典论文</p>
+
+  <div class="summary">
+    <div class="summary-card green">
+      <div class="num">5</div>
+      <div class="label">直接继承（原样搬用）</div>
+    </div>
+    <div class="summary-card orange">
+      <div class="num">6</div>
+      <div class="label">改造继承（核心思想+维度调整）</div>
+    </div>
+    <div class="summary-card blue">
+      <div class="num">4</div>
+      <div class="label">启发灵感（概念迁移非直接对应）</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="tag direct">直接继承</span> 原样搬用，几乎不改</div>
+    <div class="legend-item"><span class="tag adapt">改造继承</span> 核心思想不变，调整了维度或机制</div>
+    <div class="legend-item"><span class="tag inspire">启发灵感</span> 概念迁移，非直接对应</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>CV 论文</th>
+          <th>核心技术</th>
+          <th>NLP / Transformer 中的对应</th>
+          <th>继承方式</th>
+          <th>关键差异</th>
+          <th>Transformer 中的具体位置</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="paper-name">AlexNet (2012)</td>
+          <td>ReLU 激活函数</td>
+          <td>GELU / SiLU（ReLU 的平滑变体）</td>
+          <td><span class="tag adapt">改造</span></td>
+          <td>ReLU 硬截断（max(0,x)）；GELU 用概率门控，负区间保留少量信号</td>
+          <td>Transformer FFN 中的激活函数（BERT/GPT 用 GELU，LLaMA 用 SiLU）</td>
+        </tr>
+        <tr>
+          <td class="paper-name">AlexNet (2012)</td>
+          <td>Dropout 正则化</td>
+          <td>Dropout</td>
+          <td><span class="tag direct">直接继承</span></td>
+          <td>几乎无改动。Transformer 在 attention 权重和 FFN 中都加 Dropout</td>
+          <td>Attention weights dropout + FFN dropout + residual dropout</td>
+        </tr>
+        <tr>
+          <td class="paper-name">AlexNet (2012)</td>
+          <td>GPU 并行训练</td>
+          <td>GPU / TPU 并行</td>
+          <td><span class="tag direct">直接继承</span></td>
+          <td>AlexNet 用 2 块 GPU；Transformer 时代用 8-1024 块 GPU/TPU</td>
+          <td>数据并行 + 模型并行 + 流水线并行</td>
+        </tr>
+        <tr>
+          <td class="paper-name">VGG (2014)</td>
+          <td>堆叠相同结构加深网络</td>
+          <td>堆叠 N 个相同 Transformer Block</td>
+          <td><span class="tag inspire">启发</span></td>
+          <td>VGG 堆叠相同 3×3 卷积块；Transformer 堆叠相同 Multi-Head Attention + FFN 块</td>
+          <td>Transformer = N × [Multi-Head Attention + FFN + 残差 + LayerNorm]</td>
+        </tr>
+        <tr>
+          <td class="paper-name">Xavier (2010)</td>
+          <td>方差分析权重初始化 $\text{Var}(W) = \frac{2}{n_{\text{in}}+n_{\text{out}}}$</td>
+          <td>Xavier / Glorot 初始化</td>
+          <td><span class="tag direct">直接继承</span></td>
+          <td>Transformer 原论文直接使用 Xavier 初始化（截断正态）</td>
+          <td>所有权重矩阵的初始化（Attention 的 Q/K/V/O 矩阵，FFN 的两层）</td>
+        </tr>
+        <tr>
+          <td class="paper-name">He (2015)</td>
+          <td>He 初始化 $\text{Var}(W) = \frac{2}{n}$（补偿 ReLU 砍半）</td>
+          <td>类似方差分析（补偿非线性激活的方差损失）</td>
+          <td><span class="tag adapt">改造</span></td>
+          <td>Transformer 用 Xavier 而非 He，因为 GELU 不像 ReLU 硬截断。但"补偿非线性激活方差损失"的思想被保留</td>
+          <td>部分 Transformer 变体用 He 初始化（当用 ReLU 时）</td>
+        </tr>
+        <tr>
+          <td class="paper-name">NIN (2014)</td>
+          <td>1×1 卷积（跨通道线性混合）</td>
+          <td>FFN 层（跨维度线性混合）</td>
+          <td><span class="tag inspire">启发</span></td>
+          <td>1×1 卷积在每个空间位置做跨通道线性变换 + 非线性；Transformer FFN 在每个时间步做跨维度线性变换 + 非线性。数学结构完全同构</td>
+          <td>Transformer 每层 Block 中的 FFN：Linear → GELU → Linear（先扩展再压缩）</td>
+        </tr>
+        <tr>
+          <td class="paper-name">NIN (2014)</td>
+          <td>GAP 全局平均池化</td>
+          <td>Attention 池化（全局加权平均）</td>
+          <td><span class="tag inspire">启发</span></td>
+          <td>GAP 对所有位置等权平均；Attention 对所有位置学权重后加权平均。后者是前者的可学习泛化</td>
+          <td>ViT 的 [CLS] token attention pooling；GPT 的最后输出 attention</td>
+        </tr>
+        <tr>
+          <td class="paper-name">GoogLeNet (2014)</td>
+          <td>Bottleneck 结构（1×1 降维 → 3×3 → 1×1 升维）</td>
+          <td>FFN 的 expand-contract 结构</td>
+          <td><span class="tag adapt">改造</span></td>
+          <td>GoogLeNet 用 1×1 在通道维度降维→升维；Transformer FFN 用 Linear 在隐藏维度扩展→压缩。降维→升维 变成 扩展→压缩，但都是"先变换宽度再做非线性"</td>
+          <td>FFN: $d_{\text{model}} \to 4 \times d_{\text{model}} \to \text{GELU} \to d_{\text{model}}$（先扩展 4 倍再压缩回去）</td>
+        </tr>
+        <tr>
+          <td class="paper-name">BN (2015)</td>
+          <td>Batch Normalization（沿 batch 维度归一化）</td>
+          <td>Layer Normalization（沿 feature 维度归一化）</td>
+          <td><span class="tag adapt">改造</span></td>
+          <td>BN 沿 batch 维归一化（依赖 batch 统计）；LN 沿 feature 维归一化（与 batch 无关）。原因：NLP 序列长度可变 → batch 统计不稳定</td>
+          <td>每个 Transformer Block 中 2 个 LayerNorm（Attention 前一个，FFN 前一个）</td>
+        </tr>
+        <tr>
+          <td class="paper-name">ResNet v1 (2016)</td>
+          <td>残差连接 $x + \mathcal{F}(x)$</td>
+          <td>残差连接（每个 Block 都有）</td>
+          <td><span class="tag direct">直接继承</span></td>
+          <td>几乎无改动。ResNet 的 $x + \mathcal{F}(x)$ → Transformer 的 $x + \text{Attn}(x)$ 和 $x + \text{FFN}(x)$</td>
+          <td>每个 Transformer Block 有 2 个残差连接（Attention 后一个，FFN 后一个）</td>
+        </tr>
+        <tr>
+          <td class="paper-name">ResNet v2 (2016)</td>
+          <td>Pre-activation（BN→ReLU→Conv，add 后无 ReLU）</td>
+          <td>Pre-LN Transformer（LN 在 Attention 前而非后）</td>
+          <td><span class="tag direct">直接继承</span></td>
+          <td>ResNet v2 发现 add 后有激活会截断梯度 → Pre-activation；Transformer 同样发现 Post-LN 深层不稳 → Pre-LN。完全相同的教训</td>
+          <td>GPT-2、LLaMA、PaLM 等深层 Transformer 全部用 Pre-LN（LN 在 Attention/FFN 之前）</td>
+        </tr>
+        <tr>
+          <td class="paper-name">DenseNet (2017)</td>
+          <td>Dense connectivity + 特征复用（concat）</td>
+          <td>无直接对应（标准 Transformer 不用 concat）</td>
+          <td><span class="tag inspire">启发</span></td>
+          <td>标准 Transformer 每层独立。但 DenseNet 的"特征复用"思想在 Memory Networks、Transformer-XL 的缓存机制中有间接体现</td>
+          <td>Transformer-XL 的 memory mechanism（缓存前段 hidden states 复用）</td>
+        </tr>
+        <tr>
+          <td class="paper-name">MobileNet (2017)</td>
+          <td>深度可分离卷积（空间与通道解耦）</td>
+          <td>高效 Transformer 中的 Depthwise Conv</td>
+          <td><span class="tag adapt">改造</span></td>
+          <td>MobileNet 解耦空间卷积和通道混合；高效 Transformer 用 depthwise conv 做局部位置编码，替代全量 attention</td>
+          <td>Conformer（语音）、CoAtNet（视觉语言）中的 depthwise conv + attention 混合</td>
+        </tr>
+        <tr>
+          <td class="paper-name">ResNeXt (2017)</td>
+          <td>多路同构并行（cardinality C 路分支）</td>
+          <td>Multi-Head Attention（多路并行注意力）</td>
+          <td><span class="tag adapt">改造</span></td>
+          <td>ResNeXt 的 C 路同构分支→求和；Transformer 的 h 个注意力头→拼接。核心相同：多路并行学不同子空间。ResNeXt 用 grouped conv 高效实现，MHA 用矩阵分块高效实现</td>
+          <td>Multi-Head Attention 的 h 个头（如 8 头 = 8 路并行注意力）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">三大关键改造详解</h2>
+
+  <div class="detail-card">
+    <h3>① BN → LayerNorm：从 batch 维到 feature 维</h3>
+    <p><strong>BN 的问题</strong>：NLP 中序列长度可变，一个 batch 内不同样本长度不同 → 沿 batch 维做统计会被 padding 污染。</p>
+    <p><strong>LN 的改造</strong>：不看 batch 维，只看单个样本的 feature 维做归一化 → 与 batch 大小和序列长度无关。</p>
+    <p><strong>BN</strong>: 对每个特征，跨所有样本归一化 → <span class="formula">$\mu_B, \sigma_B^2 = \text{statistics over batch}$</span></p>
+    <p><strong>LN</strong>: 对每个样本，跨所有特征归一化 → <span class="formula">$\mu_l, \sigma_l^2 = \text{statistics over features}$</span></p>
+    <p><strong>一句话记忆</strong>：BN 是"全班同学比平均"，LN 是"一个人各科比平均"。NLP 每个样本"科目"不同（序列长度不同），只能一个人内部比。</p>
+  </div>
+
+  <div class="detail-card">
+    <h3>② ResNet v2 → Pre-LN：完全相同的教训</h3>
+    <p><strong>ResNet v2 的发现</strong>：add 后有 ReLU（post-activation）会截断梯度，深层网络训练不稳 → 把 ReLU 移到 add 之前（pre-activation）。</p>
+    <p><strong>Transformer 的对应</strong>：Post-LN（LN 在残差之后）深层训练不稳 → Pre-LN（LN 在残差之前）深层稳定。</p>
+    <p><strong>ResNet v2</strong>: <span class="formula">$x \to [\text{BN} \to \text{ReLU} \to \text{Conv} \to \text{BN} \to \text{ReLU} \to \text{Conv}] \to x + \mathcal{F}(x)$</span></p>
+    <p><strong>Pre-LN Transformer</strong>: <span class="formula">$x \to [\text{LN} \to \text{Attn}] \to x + \text{Attn}(\text{LN}(x)) \to [\text{LN} \to \text{FFN}] \to x + \text{FFN}(\text{LN}(x))$</span></p>
+    <p><strong>一句话记忆</strong>：add 之后不放任何非线性层——这条铁律从 ResNet v2 直接搬到了 Transformer。</p>
+  </div>
+
+  <div class="detail-card">
+    <h3>③ ResNeXt → Multi-Head Attention：多路并行的两种形态</h3>
+    <p><strong>ResNeXt</strong>：C 路同构瓶颈分支 → 各自学不同变换 → 求和聚合。用 grouped convolution 高效实现。</p>
+    <p><strong>Multi-Head Attention</strong>：h 个注意力头 → 各自学不同关注模式 → 拼接后线性变换。用矩阵分块高效实现。</p>
+    <p><strong>数学对应</strong>：</p>
+    <p>ResNeXt: <span class="formula">$\mathcal{F}(x) = \sum_{i=1}^{C} \tau_i(x)$（$C$ 路同构，求和聚合）</span></p>
+    <p>Multi-Head: <span class="formula">$\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\, W^O$，其中 $\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$</span></p>
+    <p><strong>一句话记忆</strong>：ResNeXt 是"请 32 个专才分头干再汇总"；Multi-Head 是"请 8 个专家各看一个角度再综合"。同一种思想，不同的聚合方式（求和 vs 拼接）。</p>
+  </div>
+
+  <h2 class="section-title">传承关系全景图</h2>
+
+  <div class="detail-card" style="border-left-color: var(--green);">
+    <h3 style="color: var(--green);">直接继承（5 项）—— 几乎原样搬用</h3>
+    <p>1. <strong>Dropout</strong>（AlexNet → Transformer）<br>
+    2. <strong>GPU 并行</strong>（AlexNet → Transformer）<br>
+    3. <strong>Xavier 初始化</strong>（Glorot → Transformer 原论文直接用）<br>
+    4. <strong>残差连接</strong>（ResNet v1 → Transformer 每个 Block）<br>
+    5. <strong>Pre-activation 思想</strong>（ResNet v2 → Pre-LN Transformer）</p>
+    <p style="color: var(--muted); font-size: 13px;">这 5 项技术从 CV 搬到 NLP 几乎零修改，说明它们解决的是"深度网络通用问题"，不依赖具体模态。</p>
+  </div>
+
+  <div class="detail-card" style="border-left-color: var(--orange);">
+    <h3 style="color: var(--orange);">改造继承（6 项）—— 核心不变，维度调整</h3>
+    <p>1. <strong>ReLU → GELU</strong>：硬截断 → 概率门控（补偿负区间信号）<br>
+    2. <strong>He 初始化思想</strong>：补偿非线性方差损失的概念保留，但 GELU 不需 2 倍补偿<br>
+    3. <strong>Bottleneck → FFN expand-contract</strong>：降维→升维 变成 扩展→压缩<br>
+    4. <strong>BN → LayerNorm</strong>：batch 维统计 → feature 维统计<br>
+    5. <strong>Depthwise separable conv → 高效 Transformer</strong>：空间通道解耦 → 局部全局解耦<br>
+    6. <strong>ResNeXt 多路 → Multi-Head Attention</strong>：grouped conv → 矩阵分块，求和→拼接</p>
+    <p style="color: var(--muted); font-size: 13px;">改造的原因通常是"NLP 的数据结构不同"（序列 vs 图像、可变长度 vs 固定尺寸）。</p>
+  </div>
+
+  <div class="detail-card" style="border-left-color: var(--blue);">
+    <h3 style="color: var(--blue);">启发灵感（4 项）—— 概念迁移，非直接对应</h3>
+    <p>1. <strong>VGG 堆叠相同块 → Transformer 堆叠相同 Block</strong>：架构哲学迁移<br>
+    2. <strong>NIN 1×1 卷积 → FFN 层</strong>：跨通道/维度混合的数学同构<br>
+    3. <strong>NIN GAP → Attention pooling</strong>：等权平均 → 可学习加权平均<br>
+    4. <strong>DenseNet 特征复用 → Transformer-XL memory</strong>：显式保留历史 → 缓存前段 hidden states</p>
+    <p style="color: var(--muted); font-size: 13px;">启发关系最弱但有价值——它们提供了"可以这样想"的思路框架。</p>
+  </div>
+
+  <h2 class="section-title">结论</h2>
+  <div class="detail-card">
+    <p>你读的这 12 篇 CV 论文，<strong>不是孤立的 CV 技术</strong>，而是深度学习基础构件的发明史。Transformer 的三大核心组件——残差连接、归一化、多路并行——全部来自这些 CV 论文：</p>
+    <p>1. <strong>残差连接</strong> ← ResNet v1/v2（直接继承）<br>
+    2. <strong>LayerNorm</strong> ← Batch Normalization（改造继承）<br>
+    3. <strong>Multi-Head Attention</strong> ← ResNeXt 多路并行（改造继承）<br>
+    4. <strong>FFN</strong> ← NIN 1×1 卷积 + GoogLeNet bottleneck（启发 + 改造）<br>
+    5. <strong>Dropout</strong> ← AlexNet（直接继承）<br>
+    6. <strong>权重初始化</strong> ← Xavier/He（直接 + 改造）</p>
+    <p style="color: var(--muted); font-size: 13px; margin-top: 12px;">读懂这 12 篇 CV 论文，就等于读懂了 Transformer 架构设计的一半来源。</p>
+  </div>
+</div>
+</body>
+</html>
